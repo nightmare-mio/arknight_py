@@ -1,7 +1,7 @@
 '''
 Author: nightmare-mio wanglongwei2009@qq.com
 Date: 2023-08-28 22:27:36
-LastEditTime: 2023-08-28 23:54:53
+LastEditTime: 2023-08-29 00:03:49
 Description: 请不要恶意请求
 '''
 import requests
@@ -15,6 +15,7 @@ headers={}
 data=requests.get(url=url,headers=headers).text
 selector=parsel.Selector(data)
 divs=selector.xpath('//div[@id="filter-data"]/div')
+row_count=0;
 for div in divs:
     # 以下为wiki中所有的属性，有些本人并不认识
     # 名字zh
@@ -69,7 +70,8 @@ for div in divs:
 )
 
     name="data.txt"
+    row_count+=1
     with open('明日方舟\\'+name,mode='a', encoding='utf-8') as f:
             f.write(row+ '\n')
-    print(name+'打印成功！')
+    print(str(row_count)+'打印成功！')
 
